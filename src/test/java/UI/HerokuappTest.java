@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 public class HerokuappTest {
     public void OpenHerokuappTest()
     {
-        System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDrivers\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://the-internet.herokuapp.com/");
