@@ -2,40 +2,20 @@ package UI.AcmeTests;
 
 import com.sun.org.glassfish.gmbal.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.MainPage;
 import pages.RubberDucksPage;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 
-public class AcmeTest {
-    WebDriver driver = new ChromeDriver();
-
-    @BeforeTest
-    private void setUp() {
-        driver.manage().window().maximize();
-        driver.get("https://litecart.stqa.ru/en/");
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-    }
-
-    @AfterTest
-    private void Quit() {
-        driver.quit();
-    }
+public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на открытие страницы Rubber Ducks")
     public void OpenRubberDucksTest() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.OpenRubberDucks();
+        mainPage.openRubberDucks();
 
         Assert.assertEquals("Rubber Ducks", driver.findElement(By.xpath("//h1[@class='title' and text()='Rubber Ducks']")).getText());
     }
@@ -44,7 +24,7 @@ public class AcmeTest {
     @Description("Тест на открытие подкатегории Rubber Ducks - Subcategory")
     public void OpenSubcategoryTest() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.OpenRubberDucksSub();
+        mainPage.openRubberDucksSub();
 
         Assert.assertEquals("Subcategory", driver.findElement(By.xpath("//h1[@class='title' and text()='Subcategory']")).getText());
     }
@@ -54,7 +34,7 @@ public class AcmeTest {
     public void SubcategorySortByNameTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
-        mainPage.OpenRubberDucksSub();
+        mainPage.openRubberDucksSub();
 
         String[] arr = rubberDucksPage.allDucksInName();
         String[] arrSort = arr.clone();
@@ -70,7 +50,7 @@ public class AcmeTest {
     public void SubcategorySortByPopularityTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
-        mainPage.OpenRubberDucksSub();
+        mainPage.openRubberDucksSub();
 
         String[] arr = rubberDucksPage.allDucksInPopularity();
         String[] arrSort = arr.clone();
@@ -86,7 +66,7 @@ public class AcmeTest {
     public void SubcategorySortByDateTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
-        mainPage.OpenRubberDucksSub();
+        mainPage.openRubberDucksSub();
 
         String[] arr = rubberDucksPage.allDucksInDate();
         String[] arrSort = arr.clone();
@@ -101,7 +81,7 @@ public class AcmeTest {
     @Description("Тест на соответствие лейбла цвету утки")
     public void SubcategoryCheckLabelTest() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.OpenRubberDucksSub();
+        mainPage.openRubberDucksSub();
 
         Assert.assertEquals(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@title='Green Duck']//div[@title='New']")).isEnabled(), true,
                 "Зелёной утке соответствует лейб - New");

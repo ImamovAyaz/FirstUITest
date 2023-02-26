@@ -8,12 +8,17 @@ import java.util.Collections;
 
 public class RubberDucksPage {
     WebDriver driver;
+    private By priceButton = By.xpath("//nav[@class='filter']/a[text()='Price']");
+    private By nameButton = By.xpath("//nav[@class='filter']/a[text()='Name']");
+    private By popularityButton = By.xpath("//nav[@class='filter']/a[text()='Popularity']");
+    private By dateButton = By.xpath("//nav[@class='filter']/a[text()='Date']");
+
 
     public RubberDucksPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void SortByPrice() {
+    public void sortByPrice() {
         int arrayLenght = driver.findElements(By.xpath("//div[@class='content']//li[@class='product row shadow hover-light']")).size();
         String[] arr = new String[arrayLenght];
 
@@ -25,7 +30,7 @@ public class RubberDucksPage {
     }
 
     public String[] allDucksInPrice(){
-        driver.findElement(By.xpath("//nav[@class='filter']/a[text()='Price']")).click();
+        driver.findElement(priceButton).click();
         int arrayLenght = driver.findElements(By.xpath("//div[@class='content']//li[@class='product row shadow hover-light']")).size();
         String[] arr = new String[arrayLenght];
 
@@ -36,7 +41,7 @@ public class RubberDucksPage {
     }
 
     public String[] allDucksInName(){
-        driver.findElement(By.xpath("//nav[@class='filter']/a[text()='Name']")).click();
+        driver.findElement(nameButton).click();
         int arrayLenght = driver.findElements(By.xpath("//div[@class='content']//li[@class='product row shadow hover-light']")).size();
         String[] arr = new String[arrayLenght];
 
@@ -47,7 +52,7 @@ public class RubberDucksPage {
     }
 
     public String[] allDucksInPopularity(){
-        driver.findElement(By.xpath("//nav[@class='filter']/a[text()='Popularity']")).click();
+        driver.findElement(popularityButton).click();
         String[] arr = new String[allDucksCount()];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = driver.findElement(By.xpath("//div[@class='content']//li[@class='product row shadow hover-light'][" + (i + 1) + "]//div[contains(@class, 'sticker')]")).getText();
@@ -56,7 +61,7 @@ public class RubberDucksPage {
     }
 
     public String[] allDucksInDate(){
-        driver.findElement(By.xpath("//nav[@class='filter']/a[text()='Date']")).click();
+        driver.findElement(dateButton).click();
         String[] arr = new String[allDucksCount()];
         for (int i = 0; i < arr.length; i++) {
             driver.findElement(By.xpath("//div[@class='content']//li[@class='product row shadow hover-light'][" + (i + 1) + "]")).click();
