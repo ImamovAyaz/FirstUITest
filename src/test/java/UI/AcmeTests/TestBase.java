@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    WebDriver driver;
+    public WebDriver driver;
 
     @BeforeTest
     public void setup() {
@@ -22,7 +22,7 @@ public class TestBase {
     }
 
     @AfterTest
-    private void Quit() {
+    public void Quit() {
         driver.quit();
     }
 }
