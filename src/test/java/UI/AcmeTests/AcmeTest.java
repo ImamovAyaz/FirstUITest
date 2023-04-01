@@ -17,16 +17,18 @@ public class AcmeTest extends TestBase {
         MainPage mainPage = new MainPage(driver);
         mainPage.openRubberDucks();
 
-        Assert.assertEquals("Rubber Ducks", driver.findElement(By.xpath("//h1[@class='title' and text()='Rubber Ducks']")).getText());
+        Assert.assertTrue(mainPage.isRubberDucksTitleVisible(), "Имеется заголовок 'Rubber Ducks'");
     }
 
     @Test
     @Description("Тест на открытие подкатегории Rubber Ducks - Subcategory")
     public void OpenSubcategoryTest() {
         MainPage mainPage = new MainPage(driver);
+        RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
+
         mainPage.openRubberDucksSub();
 
-        Assert.assertEquals("Subcategory", driver.findElement(By.xpath("//h1[@class='title' and text()='Subcategory']")).getText());
+        Assert.assertTrue(rubberDucksPage.isSubcategoryitleVisible(), "Имеется заголовок 'Subcategory'");
     }
 
     @Test
@@ -40,9 +42,9 @@ public class AcmeTest extends TestBase {
         String[] arrSort = arr.clone();
         Arrays.sort(arrSort);
 
-        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='button active' and text()='Name']")).isEnabled(), true,
-                "Нажата кнопка Name");
-        Assert.assertEquals(arr, arrSort, "Успешно отсортировано по полю Name");
+        Assert.assertTrue(rubberDucksPage.isNameClicked(), "Нажата кнопка 'Name'");
+        Assert.assertEquals(arr, arrSort, "Успешно отсортировано по полю 'Name'");
+
     }
 
     @Test
@@ -56,9 +58,8 @@ public class AcmeTest extends TestBase {
         String[] arrSort = arr.clone();
         Arrays.sort(arrSort);
 
-        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='button active' and text()='Popularity']")).isEnabled(), true,
-                "Нажата кнопка Popularity");
-        Assert.assertEquals(arr, arrSort, "Успешно отсортировано по полю Popularity");
+        Assert.assertEquals(rubberDucksPage.isPopularityClicked(), true, "Нажата кнопка 'Popularity'");
+        Assert.assertEquals(arr, arrSort, "Успешно отсортировано по полю 'Popularity'");
     }
 
     @Test
@@ -72,22 +73,17 @@ public class AcmeTest extends TestBase {
         String[] arrSort = arr.clone();
         Arrays.sort(arrSort);
 
-        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='button active' and text()='Date']")).isEnabled(), true,
-                "Нажата кнопка Date");
+        Assert.assertTrue(rubberDucksPage.isDateClicked(), "Нажата кнопка Date");
         Assert.assertEquals(arr, arrSort, "Успешно отсортировано по полю Date");
     }
 
     @Test
     @Description("Тест на соответствие лейбла цвету утки")
-    public void SubcategoryCheckLabelTest() {
+    public void CheckLabelTest() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.openRubberDucksSub();
 
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@title='Green Duck']//div[@title='New']")).isEnabled(), true,
-                "Зелёной утке соответствует лейб - New");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@title='Purple Duck']//div[@title='New']")).isEnabled(), true,
-                "Розовой утке соответствует лейб - New");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@title='Yellow Duck']//div[@title='On Sale']")).isEnabled(), true,
-                "Жёлтой утке соответствует лейб - Sale");
+        Assert.assertTrue(mainPage.isColorDuckAndTitle("Green","New"));
+        Assert.assertTrue(mainPage.isColorDuckAndTitle("Purple","New"));
+        Assert.assertTrue(mainPage.isColorDuckAndTitle("Yellow","On Sale"));
     }
 }

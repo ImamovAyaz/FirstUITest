@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,10 +11,14 @@ public class RubberDucksPage {
     public WebDriver driver;
     private By priceButton = By.xpath("//nav[@class='filter']/a[text()='Price']");
     private By nameButton = By.xpath("//nav[@class='filter']/a[text()='Name']");
+    private By nameActiveButton = By.xpath("//span[@class='button active' and text()='Name']");
     private By popularityButton = By.xpath("//nav[@class='filter']/a[text()='Popularity']");
+    private By popularityActiveButton = By.xpath("//span[@class='button active' and text()='Popularity']");
     private By dateButton = By.xpath("//nav[@class='filter']/a[text()='Date']");
+    private By dateActiveButton = By.xpath("//span[@class='button active' and text()='Date']");
     private By duckId = By.xpath("//div[@class='codes']//span[@class='sku']");
     private By duckElement = By.xpath("//div[@class='content']//li[@class='product row shadow hover-light']");
+    private By subcategoryTitle = By.xpath("//h1[@class='title' and text()='Subcategory']");
 
 
     public RubberDucksPage(WebDriver driver) {
@@ -77,4 +82,21 @@ public class RubberDucksPage {
         int arrayLenght = driver.findElements(duckElement).size();
         return arrayLenght;
     }
+
+    public Boolean isSubcategoryitleVisible() {
+        return driver.findElement(subcategoryTitle).isEnabled();
+    }
+
+    public Boolean isNameClicked() {
+        return driver.findElement(nameActiveButton).isEnabled();
+    }
+
+    public Boolean isPopularityClicked() {
+        return driver.findElement(popularityActiveButton).isEnabled();
+    }
+
+    public Boolean isDateClicked() {
+        return driver.findElement(dateActiveButton).isEnabled();
+    }
+
 }
