@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 @Test
 public class HerokuappTest {
-    public void OpenHerokuappTest()
+    public void openHerokuappTest()
     {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();

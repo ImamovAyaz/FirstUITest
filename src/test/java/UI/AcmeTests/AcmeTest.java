@@ -1,7 +1,6 @@
 package UI.AcmeTests;
 
 import com.sun.org.glassfish.gmbal.Description;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MainPage;
@@ -13,7 +12,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на открытие страницы Rubber Ducks")
-    public void OpenRubberDucksTest() {
+    public void openRubberDucksTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openRubberDucks();
 
@@ -22,7 +21,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на открытие подкатегории Rubber Ducks - Subcategory")
-    public void OpenSubcategoryTest() {
+    public void openSubcategoryTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
 
@@ -33,7 +32,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на сортировку уток на странице 'Subcategory' по названию (Name)")
-    public void SubcategorySortByNameTest() {
+    public void subcategorySortByNameTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
         mainPage.openRubberDucksSub();
@@ -49,7 +48,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на сортировку уток на странице 'Subcategory' по популярности (Popularity)")
-    public void SubcategorySortByPopularityTest() {
+    public void subcategorySortByPopularityTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
         mainPage.openRubberDucksSub();
@@ -64,7 +63,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на сортировку уток на странице 'Subcategory' по дате создания (Date)")
-    public void SubcategorySortByDateTest() {
+    public void subcategorySortByDateTest() {
         MainPage mainPage = new MainPage(driver);
         RubberDucksPage rubberDucksPage = new RubberDucksPage(driver);
         mainPage.openRubberDucksSub();
@@ -79,7 +78,7 @@ public class AcmeTest extends TestBase {
 
     @Test
     @Description("Тест на соответствие лейбла цвету утки")
-    public void CheckLabelTest() {
+    public void checkLabelTest() {
         MainPage mainPage = new MainPage(driver);
 
         Assert.assertTrue(mainPage.isColorDuckAndTitle("Green","New"));
